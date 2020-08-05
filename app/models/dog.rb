@@ -1,6 +1,6 @@
 class Dog < ApplicationRecord
+    has_many :employees
 
-    def employees
-        Employee.where(dog: self.id)
-    end
+
+    
 end
