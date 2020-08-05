@@ -28,7 +28,16 @@ class EmployeesController < ApplicationController
             dog_id: dog.id,
             img_url: img_url
         )
-        redirect_to employee_path(employee.id)
+        
+        if employee.id #if alias or title already exists this will be nil
+            flash[:notice] = "Employee successfully created"
+            redirect_to employee_path(employee.id)
+        else
+            flash[:notice] = employee.errors.full_messages
+            redirect_to new_employee_path
+        end
+
+        
     end
 
     def edit
